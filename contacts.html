@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+    <title>Handyman in the Hammer</title>
+    <link rel="stylesheet" href="https://use.typekit.net/pmj5ykc.css">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="robots" content="noindex, nofollow" />
+</head>
+<body>
+    <header id="header">
+        <a id="logo" href="#"><img src="img/handyman-logo.svg" alt="Handyman in the Hammer logo"></a>
+        <!-- <nav>
+            <ul>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav> -->
+    </header>
+    <main>
+        <h1>Contacts</h1>
+        
+
+    </main>
+    <script>
+        window.onscroll = () => {
+        if (document.body.scrollTop > 150 || document.documentElement.scrollTop  > 150) {
+            document.getElementById("logo").style.maxWidth = "50px";
+        } else {
+            document.getElementById("logo").style.maxWidth = "300px";
+        }
+        }
+
+        let contacts = [
+            {name: "Ryan Price", phone: "+1-905-929-2826", email: "handyman@ryanprice.net"}, 
+            {name: "Charles MacPhail", business:"Charles Linsey &amp; Associates Limited", phone: "905-548-7607, 101", email: "charles@charleslinsey.com"}, 
+            {name: "Rob Fierz", business:"Home Depot", phone: "905-304-3592", email: ""},
+            {name: "Jeannie Crawford", business:"Coldwell Banker", phone: "289-925-5614", email: ""},
+            {name: "Jake Wilkens", business:"Wilkens Masonry", phone: "416-425-8055", email: ""},
+            {name: "Amr Abdel-latif", business:"Broom Sweet Broom", phone: "905-921-3548", email: ""},
+            {name: "Brent Hebert", business:"A Guy and a Brush", phone: "519-494-0000", email: ""},
+            {name: "Brad", business:"Eavestrough", phone: "905-923-3395", email: ""},   
+            {name: "Andy Lamonte", business:"Plumber", phone: "905-921-4994", email: ""},
+            {name: "Travis Craig", business:"TC Plumbing", phone: "905-973-3974", email: ""},
+            {name: "Jamie Ferguson", business:"Metro Contracting", phone: "289-244-7144", email: "jamie@metrocontracting.ca"},
+            ];
+
+        for(let i=0; i<contacts.length; i++) {
+            console.log(contacts[i].name);
+            let section = document.createElement("section");
+            section.classList.add("business");
+            let h2 = document.createElement("h2");
+            h2.textContent = contacts[i].name;
+            section.appendChild(h2);
+            if(contacts[i].business) {
+                let h3 = document.createElement("h3");
+                h3.textContent = contacts[i].business;
+                section.appendChild(h3);
+            }
+            let address = document.createElement("address");
+            let ul = document.createElement("ul");
+            let liPhone = document.createElement("li");
+            let aPhone = document.createElement("a");
+            aPhone.href = "tel:" + contacts[i].phone.replace(/[^+\d]/g, '');
+            aPhone.textContent = contacts[i].phone;
+            liPhone.appendChild(aPhone);
+            ul.appendChild(liPhone);
+            if(contacts[i].email) {
+                let liEmail = document.createElement("li");
+                let aEmail = document.createElement("a");
+                aEmail.href = "mailto:" + contacts[i].email;
+                aEmail.textContent = contacts[i].email;
+                liEmail.appendChild(aEmail);
+                ul.appendChild(liEmail);
+            }
+            address.appendChild(ul);
+            section.appendChild(address);
+            document.querySelector("main").appendChild(section); 
+            let btn = document.createElement("button");
+            btn.class = contacts[i];
+            btn.textContent = "Save to phone";
+            section.appendChild(btn);
+            //add onclick to button to generate vCard
+            btn.onclick = function() {
+                var contact = contacts[i];
+                console.log("Generating vCard for " + contact.name);
+                var vcard = "BEGIN:VCARD\nVERSION:4.0\nFN:" + contact.name + "\nTEL;TYPE=work,voice:" + contact.phone + "\nEMAIL:" + contact.email + "\nEND:VCARD";
+                var blob = new Blob([vcard], { type: "text/vcard" });
+                var url = URL.createObjectURL(blob);
+                
+                const newLink = document.createElement('a');
+                newLink.download = contact.name + ".vcf";
+                newLink.textContent = contact.name;
+                newLink.href = url;
+                
+                newLink.click();
+            };
+        }       
+
+       
+        
+            
+        function generateVCard(contact) {
+            
+        };
+
+        var saveBtn = document.getElementById("save-btn");
+        //saveBtn.addEventListener("click", function () {
+        // Get the contact information from the website
+        // var contact = {
+        //     name: "John Smith",
+        //     phone: "555-555-5555",
+        //     email: "john@example.com"
+        // };
+
+        //       // create a vcard file
+        // var vcard = "BEGIN:VCARD\nVERSION:4.0\nFN:" + contact.name + "\nTEL;TYPE=work,voice:" + contact.phone + "\nEMAIL:" + contact.email + "\nEND:VCARD";
+        // var blob = new Blob([vcard], { type: "text/vcard" });
+        // var url = URL.createObjectURL(blob);
+        
+        // const newLink = document.createElement('a');
+        // newLink.download = contact.name + ".vcf";
+        // newLink.textContent = contact.name;
+        // newLink.href = url;
+        
+        // newLink.click();
+        // });
+    </script>
+</body>
+</html>
